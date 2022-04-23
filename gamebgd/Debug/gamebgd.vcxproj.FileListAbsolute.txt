@@ -1,0 +1,2 @@
+C:\Users\DELL\source\repos\gamebgd\Debug\gamebgd.exe
+C:\Users\DELL\source\repos\gamebgd\Debug\gamebgd.pdb
