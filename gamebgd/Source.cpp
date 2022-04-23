@@ -129,7 +129,7 @@ int main()
 
     board* fullBoard = NULL;
     cout << "Welcome to Tic-tac-toe DOS Game. (2 Player version)\n\n";
-    cout << "X is Player 1 and O is Player 2.\nI will decide who is starting in the first match...\n ";
+    cout << "X is Player 1 and O is the computer.\nI will decide who is starting in the first match...\n ";
 
     dice = 1;//rand() % 6 + 1;
     cout << dice;
