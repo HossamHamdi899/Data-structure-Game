@@ -196,7 +196,7 @@ int medium(board* fullBoard) // algorithm for playing random value.
 
 }
 
-int funt(board* fullBoard, int depth, bool isMaximizing, bool firstTime, int alpha, int beta)
+int minimax2(board* fullBoard, int depth, bool isMaximizing, bool firstTime, int alpha, int beta)
 { // algorithm for playing the worst value for the AI.
     board* temp = fullBoard;
     int result = checkWinner(fullBoard);
@@ -212,7 +212,7 @@ int funt(board* fullBoard, int depth, bool isMaximizing, bool firstTime, int alp
             if (temp->data == ' ')
             {
                 temp->data = 'X';
-                int score = funt(fullBoard, depth - 1, false, false, alpha, beta);
+                int score = minimax2(fullBoard, depth - 1, false, false, alpha, beta);
                 temp->data = ' ';
                 if (score < finalScore)
                 {
@@ -238,7 +238,7 @@ int funt(board* fullBoard, int depth, bool isMaximizing, bool firstTime, int alp
             if (temp->data == ' ')
             {
                 temp->data = 'O';
-                int score = funt(fullBoard, depth - 1, true, false, alpha, beta);
+                int score = minimax2(fullBoard, depth - 1, true, false, alpha, beta);
                 temp->data = ' ';
                 if (score > finalScore)
                 {
@@ -346,7 +346,7 @@ void startGame(int first, board* fullBoard)
             }
             if (diff == 1)
             {
-                funt(fullBoard, 100, false, true, 10, -10); //call the function that plays the worst value for O.
+               minimax2(fullBoard, 100, false, true, 10, -10); //call the function that plays the worst value for O.
                 first = 1;
             }
             if (diff == 2)
