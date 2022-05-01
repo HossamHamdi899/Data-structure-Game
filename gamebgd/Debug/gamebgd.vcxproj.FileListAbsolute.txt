@@ -1,2 +1,4 @@
 C:\Users\DELL\source\repos\gamebgd\Debug\gamebgd.exe
 C:\Users\DELL\source\repos\gamebgd\Debug\gamebgd.pdb
+C:\Users\DELL\ticTacToe\Data-structure-Game\gamebgd\Debug\gamebgd.exe
+C:\Users\DELL\ticTacToe\Data-structure-Game\gamebgd\Debug\gamebgd.pdb

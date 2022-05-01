@@ -60,8 +60,6 @@ board* findNode(board* fullBoard, int new_data) // search a specific node in the
     return temp;
 }
 
-
-
 int checkWinner(board* fullBoard) // check if somebody won or if it's a tie.
 {
     board* temp = fullBoard;
@@ -75,11 +73,11 @@ int checkWinner(board* fullBoard) // check if somebody won or if it's a tie.
 
     }
     // Checking the columns for X or O victory.
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) 
+    {
         if (equal3(findNode(fullBoard, temp->pos - i)->data, findNode(fullBoard, temp->pos - i - 3)->data, findNode(fullBoard, temp->pos - i - 6)->data))
         {
             return findNode(fullBoard, temp->pos - i)->data == 'X' ? 2 : -2;
-
         }
     }
     // Checking the diagonals for X or O victory.
@@ -104,6 +102,7 @@ int checkWinner(board* fullBoard) // check if somebody won or if it's a tie.
     if (tie) return 0;
     return 1;
 }
+
 int minimax(board* fullBoard, int depth, bool isMaximizing, bool firstTime, int alpha, int beta) // algorithm for playing the best value for the AI.
 {
     board* temp = fullBoard; // first check if someone has won.
@@ -265,32 +264,19 @@ int funt(board* fullBoard, int depth, bool isMaximizing, bool firstTime, int alp
         return finalScore;
     }
 }
-void startGame(int first, board* fullBoard);
-board* getBoard(board* fullBoard);
 
-int main()
+board* getBoard(board* fullBoard) //linked list function.
 {
-    int k = 1; while (k == 1) { //while loop for restarting the game.
-
-        int first;
-        board* fullBoard = NULL;
-        cout << "Welcome to Tic-tac-toe DOS Game.\n\n";
-        first = 1; // used to decide X is starting.
-        cout << "X will start first!\n\n";
-        system("pause");
-        system("cls");
-        clock_t start, end;
-        start = clock();
-        startGame(first, fullBoard);
-        end = clock();
-        double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-        cout << "Time taken by program is : " << fixed
-            << time_taken;
-        cout << " sec " << endl;
-        cout << "\nGame over! Press 1 to play again or press any key to exit.\n";
-        cin >> k;
-        system("cls");
-    }
+    board* newBoard = new board;
+    newBoard->empty = true;
+    newBoard->circle = false;
+    newBoard->square = false;
+    newBoard->next = fullBoard;
+    if (newBoard->next != NULL)
+        newBoard->pos = newBoard->next->pos + 1;
+    else
+        newBoard->pos = 1;
+    return newBoard;
 }
 
 void startGame(int first, board* fullBoard)
@@ -319,9 +305,7 @@ void startGame(int first, board* fullBoard)
     while (!has_winner)
     {
         board* current = fullBoard;
-
         drawBoard(fullBoard);
-
         if (first == 1)
         {
             isPlaying = true;
@@ -372,7 +356,6 @@ void startGame(int first, board* fullBoard)
             }
         }
 
-
         current = fullBoard;  //change the data in the nodes from 1 to 9 according to the given plays.
         while (current != NULL)
         {
@@ -391,10 +374,8 @@ void startGame(int first, board* fullBoard)
             current = current->next;
         }
 
-
         has_winner = checkWinner(fullBoard) != 1; //check if someone won.
         system("cls");
-
     }
 
     int result = checkWinner(fullBoard);
@@ -411,19 +392,33 @@ void startGame(int first, board* fullBoard)
     }
 }
 
-board* getBoard(board* fullBoard) //linked list function.
+int main()
 {
-    board* newBoard = new board;
-    newBoard->empty = true;
-    newBoard->circle = false;
-    newBoard->square = false;
-    newBoard->next = fullBoard;
-    if (newBoard->next != NULL)
-        newBoard->pos = newBoard->next->pos + 1;
-    else
-        newBoard->pos = 1;
-    return newBoard;
+    int k = 1; while (k == 1) { //while loop for restarting the game.
+
+        int first;
+        board* fullBoard = NULL;
+        cout << "Welcome to Tic-tac-toe DOS Game.\n\n";
+        first = 1; // used to decide X is starting.
+        cout << "X will start first!\n\n";
+        system("pause");
+        system("cls");
+        clock_t start, end;
+        start = clock();
+        startGame(first, fullBoard);
+        end = clock();
+        double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+        cout << "Time taken by program is : " << fixed
+            << time_taken;
+        cout << " sec " << endl;
+        cout << "\nGame over! Press 1 to play again or press any key to exit.\n";
+        cin >> k;
+        system("cls");
+    }
 }
+
+
+
 
 // for time execution changes depending on some parameters:
 
@@ -442,3 +437,10 @@ board* getBoard(board* fullBoard) //linked list function.
 // b) if a user plays on hard difficulty and loses as fast as possible, the execution time will be 2.87 seconds.
 // and the parameter that controls the execution time in our code is "finalScore" in the minimax function that calculates the algorithm of the computer playing
 
+// 3- size of the game
+//as if we expanded the board of the game to matrix 9 * 9 instead of 3 * 3 the time execution will be increased
+
+// for code enhancement: 
+
+//if we used the array data structure instead of linked list it will improve the enhancement of the code
+//because we can instead list traversal in linked list by direct access
